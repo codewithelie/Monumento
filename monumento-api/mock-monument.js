@@ -1,4 +1,4 @@
-export const MONUMENTS: any[] = [
+const monuments = [
   {
     id: 1,
     name: 'Tour Eiffel',
@@ -99,4 +99,4 @@ export const MONUMENTS: any[] = [
     description: "Temple dédié à la déesse Athéna, construit sur l'Acropole d'Athènes, symbole de la Grèce antique.",
     created: new Date()
   }
-];
+]
