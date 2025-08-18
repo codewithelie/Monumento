@@ -100,3 +100,5 @@ const monuments = [
     created: new Date()
   }
 ]
+
+module.exports = monuments;
