@@ -38,6 +38,14 @@ app.post('/monuments', (req, res) => {
   res.json(success(message, monumentCreated));
 });
 
+app.put('/monuments/:id', (req, res) => {
+  const id = parseInt(req.params.id);
+  const monumentUpdated = { ...req.body, id: id};
+  monuments = monuments.map(m => m.id === id ? monumentUpdated : m);
+  const message = `Le monument avec l'ID ${id} a bien été mis à jour.`;
+  res.json(success(message, monumentUpdated));
+});
+
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
 });
