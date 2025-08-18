@@ -10,13 +10,13 @@ const sequelize = require('./src/db/sequelize.js');
 const app = express(); 
 const port = 3000;
 
-sequelize.initializeDatabase();
-
 // Middlewares
 app
   .use(favicon(__dirname + '/favicon.ico'))
   .use(morgan('dev'))
   .use(express.json()); 
+
+sequelize.initializeDatabase();
 
 app.get('/', (req, res) => {
   res.send('Hello World!');
@@ -24,10 +24,7 @@ app.get('/', (req, res) => {
 
 //app.METHOD(CHEMIN, GESTIONNAIRE(req, res))
 // Routes
-app.get('/monuments', (req, res) => {
-    const message = 'La liste des monuments a bien été récupérée.';
-    res.json(success(message, monuments));
-});
+require('./src/routes/findAllMonuments')(app);
 
 app.get('/monuments/:id', (req, res) => {
     const id = req.params.id;
