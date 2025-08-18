@@ -1,9 +1,15 @@
 const express = require('express');
 let monuments = require('./mock-monument.js');
+const morgan = require('morgan');
+const favicon = require('serve-favicon');
 const { success } = require('./helper.js');
 
 const app = express(); 
 const port = 3000;
+
+app
+  .use(favicon(__dirname + '/favicon.ico'))
+  .use(morgan('dev'));
 
 app.get('/', (req, res) => {
   res.send('Hello World!');
