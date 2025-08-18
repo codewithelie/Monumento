@@ -9,7 +9,8 @@ const port = 3000;
 
 app
   .use(favicon(__dirname + '/favicon.ico'))
-  .use(morgan('dev'));
+  .use(morgan('dev'))
+  .use(express.json());
 
 app.get('/', (req, res) => {
   res.send('Hello World!');
