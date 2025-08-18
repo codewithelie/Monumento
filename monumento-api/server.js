@@ -29,6 +29,14 @@ app.get('/monuments/:id', (req, res) => {
     res.json(success(message, monument));
 });
 
+app.post('/monuments', (req, res) => {
+  const id = 123;
+  const monumentCreated = { ...req.body, ...{id: id, created: new Date()} };
+  monuments.push(monumentCreated);
+  const message = `Le monument avec l'ID ${id} a bien été créé.`;
+  res.json(success(message, monumentCreated));
+});
+
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
 });
