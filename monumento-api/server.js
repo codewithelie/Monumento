@@ -46,6 +46,14 @@ app.put('/monuments/:id', (req, res) => {
   res.json(success(message, monumentUpdated));
 });
 
+app.delete('/monuments/:id', (req, res) => {
+  const id = parseInt(req.params.id);
+  const monumentDeleted = monuments.filter(m => m.id === id);
+  monuments = monuments.filter(m => m.id !== id);
+  const message = `Le monument avec l'ID ${id} a bien été supprimé.`;
+  res.json(success(message, monumentDeleted)); 
+});
+
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
 });
