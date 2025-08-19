@@ -9,6 +9,10 @@ module.exports = (app) => {
       where: { id: id }
     })
       .then(isUpdated => {
+        if (isUpdated[0] === 0) {
+          const message = `Aucun monument trouvé avec l'ID ${id} ou aucune donnée à mettre à jour.`;
+          res.status(404).json({ message, data: null });
+        }
         const message = `Le monument avec l'ID ${id} a bien été mis à jour.`;
         const monumentUpdated = { ...monumentData, id: id };
         res.json({ message, data: monumentUpdated });

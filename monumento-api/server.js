@@ -1,6 +1,5 @@
 // Paqkage: monumento-api
 const express = require('express');
-let monuments = require('./src/db/mock-monument.js');
 const morgan = require('morgan');
 const favicon = require('serve-favicon');
 const { success } = require('./helper.js');
@@ -16,19 +15,27 @@ app
   .use(morgan('dev'))
   .use(express.json()); 
 
+// Initialisation de la base de données
 sequelize.initializeDatabase();
 
-app.get('/', (req, res) => {
-  res.send('Hello World!');
-});
-
 // Routes
+app.get('/', (req, res) => {
+  res.send('Bienvenue sur l\'API Monumento ! Utilisez les routes pour interagir avec les monuments.');
+});
 require('./src/routes/findAllMonuments')(app);
 require('./src/routes/findMonumentByPK')(app);
 require('./src/routes/createMonument')(app);
 require('./src/routes/updateMonument')(app);
 require('./src/routes/deleteMonument')(app);
 
+app.use((req, res) => {
+  const url = req.originalUrl;
+  const method = req.method;
+  const message = `La ressource demandée : "${method} ${url}" n'existe pas. Réessayez avec une autre URL.`;
+  res.status(404).json({ message });
+});
+
+// Lancement du serveur
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
 });
