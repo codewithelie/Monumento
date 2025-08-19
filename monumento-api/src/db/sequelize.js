@@ -22,7 +22,7 @@ const MonumentModel = require('../models/monument.js')(sequelize, DataTypes);
 
 // Synchronisation des modèles avec la base de données
 const initializeDatabase = async () => {
-    return sequelize.sync({alter: true})
+    return sequelize.sync()
   .then(() => { 
     console.log('Les modèles ont été synchronisés avec la base de données.'); 
   })
