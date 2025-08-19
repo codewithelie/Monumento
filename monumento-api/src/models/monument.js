@@ -18,6 +18,12 @@ module.exports = (sequelize, DataTypes) => {
         len: {
           args: [3, 50],
           msg: 'Le nom du monument doit contenir entre 3 et 50 caractères.'
+        },
+        noForbiddenWords(value) {
+          const forbiddenWords = ['test', 'fake', 'demo', 'example'];
+          if (forbiddenWords.some(word => value.toLowerCase().includes(word))) {
+            throw new Error('Le nom du monument ne doit pas contenir de mots interdits.');
+          }
         }
       }
     },
