@@ -1,0 +1,10 @@
+GET /monuments
+
+    /monuments?name="Tour Eiffel"   (query parameters: req.query.name)
+    /monuments?limit=2              (query parameters: req.query.limit)
+    /monuments?orderBy=country      (query parameters: req.query.orderBy)
+
+GET /monuments/:id (path parameters: req.params.id)
+POST /monuments
+PUT /monuments/:id
+DELETE /monuments/:id
