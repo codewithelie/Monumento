@@ -1,1 +1,3 @@
 monumento-api/node_modules
+monumento-api/src/auth/jwtRS256.key
+monumento-api/src/auth/jwtRS256.key.pub

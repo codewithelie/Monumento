@@ -1,11 +1,12 @@
 const { MonumentModel } = require('../db/sequelize.js');
 const { Op, json } = require('sequelize');
+const auth = require('../auth/auth.js');
 
 module.exports = (app) => {
 
   //GET /monuments/search?q=totolimit=3&offset=6&order=asc&orderBy=city
 
-  app.get('/monuments/search', (req, res) => {
+  app.get('/monuments/search', auth, (req, res) => {
     const { q, limit = 10, offset = 0, order = 'desc' } = req.query;
 
     if(!q || q.trim().length < 2) {

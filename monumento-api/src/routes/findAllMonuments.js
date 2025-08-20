@@ -1,8 +1,9 @@
 const { MonumentModel } = require('../db/sequelize.js');
 const { Op } = require('sequelize');
+const auth = require('../auth/auth.js');
 
 module.exports = (app) => {
-  app.get('/monuments', (req, res) => {
+  app.get('/monuments', auth, (req, res) => {
     if(req.query.name) {
       const { name, limit, orderBy } = req.query;
 

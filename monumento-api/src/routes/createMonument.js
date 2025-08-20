@@ -1,7 +1,9 @@
 const { MonumentModel } = require('../db/sequelize.js');
+const auth = require('../auth/auth.js');
+
 
 module.exports = (app) => {
-  app.post('/monuments', (req, res) => {
+  app.post('/monuments', auth, (req, res) => {
     const monument = req.body;
     MonumentModel.create(monument)
       .then(createdMonument => {

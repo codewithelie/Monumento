@@ -1,7 +1,8 @@
 const { MonumentModel } = require('../db/sequelize.js');
+const auth = require('../auth/auth.js');
 
 module.exports = (app) => {
-  app.delete('/monuments/:id', (req, res) => {
+  app.delete('/monuments/:id', auth, (req, res) => {
     const id = parseInt(req.params.id);
 
     MonumentModel.findByPk(id)

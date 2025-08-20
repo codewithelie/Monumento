@@ -25,7 +25,7 @@ const UserModel = require('../models/user.js')(sequelize, DataTypes);
 // Synchronisation des modèles avec la base de données
 const initializeDatabase = async () => {
   try { 
-    await sequelize.sync({ alter: true });
+    await sequelize.sync();
     console.log('Les modèles ont été synchronisés avec la base de données.');
 
     // await createUser('admin', 'admin');
