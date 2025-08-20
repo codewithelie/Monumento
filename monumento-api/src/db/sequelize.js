@@ -19,6 +19,7 @@ const sequelize = new Sequelize(
 
 // Importation des models
 const MonumentModel = require('../models/monument.js')(sequelize, DataTypes);
+const UserModel = require('../models/user.js')(sequelize, DataTypes);
 
 // Synchronisation des modèles avec la base de données
 const initializeDatabase = async () => {
