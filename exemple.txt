@@ -5,6 +5,7 @@ GET /monuments
     /monuments?orderBy=country      (query parameters: req.query.orderBy)
 
 GET /monuments/:id (path parameters: req.params.id)
+GET /monuments/search?q=totolimit=3&offset=6&order=asc&orderBy=city
 POST /monuments
 PUT /monuments/:id
 DELETE /monuments/:id

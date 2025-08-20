@@ -22,6 +22,8 @@ sequelize.initializeDatabase();
 app.get('/', (req, res) => {
   res.send('Bienvenue sur l\'API Monumento ! Utilisez les routes pour interagir avec les monuments.');
 });
+
+require('./src/routes/searchMonuments')(app);
 require('./src/routes/findAllMonuments')(app);
 require('./src/routes/findMonumentByPK')(app);
 require('./src/routes/createMonument')(app);
