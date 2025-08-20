@@ -28,9 +28,8 @@ const initializeDatabase = async () => {
     await sequelize.sync({ alter: true });
     console.log('Les modèles ont été synchronisés avec la base de données.');
 
-    await createUser('admin', 'admin');
-
-    await createMonuments();
+    // await createUser('admin', 'admin');
+    // await createMonuments();
 
   } catch (err) {
     console.error('Erreur lors de la synchronisation des modèles:', err);
