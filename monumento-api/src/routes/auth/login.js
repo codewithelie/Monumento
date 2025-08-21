@@ -6,76 +6,28 @@ const privateKey =  fs.readFileSync('./src/auth/jwtRS256.key');
 const { handleError } = require('../../../helper.js');
 
 /**
- * @swagger
+ * @openapi
  * /login:
  *   post:
- *     summary: Connexion utilisateur
- *     description: Authentifie un utilisateur et retourne un accessToken et un refreshToken.
- *     tags:
- *       - Auth
+ *     tags: [Auth]
+ *     summary: Authentifier un utilisateur
  *     requestBody:
  *       required: true
  *       content:
  *         application/json:
  *           schema:
- *             type: object
- *             properties:
- *               username:
- *                 type: string
- *                 example: johndoe
- *               password:
- *                 type: string
- *                 example: monmotdepasse
- *             required:
- *               - username
- *               - password
+ *             $ref: '#/components/schemas/LoginRequest'
  *     responses:
  *       200:
  *         description: Connexion réussie
  *         content:
  *           application/json:
  *             schema:
- *               type: object
- *               properties:
- *                 message:
- *                   type: string
- *                   example: Connexion réussie.
- *                 data:
- *                   type: object
- *                   properties:
- *                     userName:
- *                       type: string
- *                       example: John Doe
- *                     accessToken:
- *                       type: string
- *                       example: eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9...
- *                     refreshToken:
- *                       type: string
- *                       example: eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9...
- *       400:
- *         description: Mot de passe manquant
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 message:
- *                   type: string
- *                   example: Le mot de passe est obligatoir.
- *                 data:
- *                   type: "null"
+ *               $ref: '#/components/schemas/LoginResponse'
  *       401:
- *         description: Identifiants invalides ou mot de passe incorrect
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 message:
- *                   type: string
- *                   example: Aucun utilisateur trouvé avec ce nom d'utilisateur.
- *                 data:
- *                   type: "null"
+ *         $ref: '#/components/responses/Unauthorized'
+ *       500:
+ *         $ref: '#/components/responses/ServerError'
  */
 module.exports = (app) => {
   app.post('/login', async (req, res) => {

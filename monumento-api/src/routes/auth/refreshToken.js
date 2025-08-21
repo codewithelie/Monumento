@@ -7,6 +7,53 @@ const privateKey =  fs.readFileSync('./src/auth/jwtRS256.key');
 const { handleError } = require('../../../helper.js');
 const { Op } = require('sequelize');
 
+/**
+ * @openapi
+ * /refresh-token:
+ *   post:
+ *     tags: [Auth]
+ *     summary: Rafraîchir le token d'accès
+ *     description: Vérifie le refresh token et renvoie un nouvel access token.
+ *     # Si tu as défini la sécurité JWT au niveau global, on la désactive ici :
+ *     security: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/RefreshRequest'
+ *           examples:
+ *             exemple:
+ *               value:
+ *                 refreshToken: "<jwt_refresh_token>"
+ *     responses:
+ *       200:
+ *         description: Rafraîchissement réussi.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: Token de rafraîchissement réussi.
+ *                 data:
+ *                   $ref: '#/components/schemas/RefreshResponse'
+ *       400:
+ *         description: Refresh token manquant.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ApiError'
+ *       401:
+ *         description: Refresh token invalide ou expiré.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ApiError'
+ *       500:
+ *         $ref: '#/components/responses/ServerError'
+ */
 module.exports = (app) => {
     app.post('/refresh-token', async (req, res) => {
         const { refreshToken } = req.body;
