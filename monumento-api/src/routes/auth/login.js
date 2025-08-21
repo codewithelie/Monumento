@@ -35,15 +35,27 @@ module.exports = (app) => {
         });
       }
 
-      const token = jwt.sign(
+      const accesstToken = jwt.sign(
         { userName: user.username },
         privateKey,
-        { algorithm: 'RS256', expiresIn: '1h' }
+        { algorithm: 'RS256', expiresIn: '1m' }
       );
+      const refreshToken = jwt.sign(
+        { userName: user.username },
+        privateKey,
+        { algorithm: 'RS256', expiresIn: '7d' }
+      );
+
+      const decodedRefreshToken = jwt.decode(refreshToken);
+      const refreshTokenExpiry = new Date(decodedRefreshToken.exp * 1000);
+
+      user.refreshToken = refreshToken;
+      user.refreshTokenExpiry = refreshTokenExpiry;
+      await user.save();
 
       return res.json({
         message: 'Connexion réussie.',
-        data: { userName: user.name, token }
+        data: { userName: user.name, accessToken: accesstToken, refreshToken: refreshToken }
       });
 
     } catch (error) {

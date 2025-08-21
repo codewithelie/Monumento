@@ -33,6 +33,14 @@ module.exports = (sequelize, DataTypes) => {
           msg: 'Le mot de passe ne peut pas être vide.'
         }
       }
+    },
+    refreshToken: {
+      type: DataTypes.TEXT,
+      allowNull: true,
+    },
+    refreshTokenExpiry: {
+      type: DataTypes.DATE,
+      allowNull: true,
     }
   }, {
     timestamps: true,

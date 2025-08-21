@@ -33,6 +33,7 @@ require('./src/routes/monuments/deleteMonument')(app);
 //auth routes
 require('./src/routes/auth/login')(app);
 require('./src/routes/auth/register')(app);
+require('./src/routes/auth/refreshToken')(app);
 
 app.use((req, res) => {
   const url = req.originalUrl;
