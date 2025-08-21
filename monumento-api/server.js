@@ -13,7 +13,7 @@ const port = 3000;
 app
   .use(favicon(__dirname + '/favicon.ico'))
   .use(morgan('dev'))
-  .use(express.json())
+  .use(express.json()) 
   .use(cors({
     origin: 'http://localhost:4200', 
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
