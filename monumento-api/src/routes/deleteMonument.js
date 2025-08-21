@@ -1,26 +1,30 @@
 const { MonumentModel } = require('../db/sequelize.js');
 const auth = require('../auth/auth.js');
+const { handleError } = require('../../helper.js');
 
 module.exports = (app) => {
-  app.delete('/monuments/:id', auth, (req, res) => {
-    const id = parseInt(req.params.id);
+  app.delete('/monuments/:id', auth, async (req, res) => {
+    const id = parseInt(req.params.id, 10);
 
-    MonumentModel.findByPk(id)
-      .then(monument => {
-        if (monument) {
-          return MonumentModel.destroy({ where: { id: id } })
-            .then(() => {
-              const message = `Le monument avec l'ID ${id} a bien été supprimé.`;
-              res.json({ message, data: monument });
-            });
-        } else {
-          const message = `Aucun monument trouvé avec l'ID ${id}.`;
-          res.status(404).json({ message, data: null });
-        }
-      })
-      .catch(error => {
-        const message = 'Le monument n\'a pas pu être supprimé. Réessayez dans quelques instants.';
-        res.status(500).json({ message, data: error });
+    try {
+      const monument = await MonumentModel.findByPk(id);
+
+      if (!monument) {
+        return res.status(404).json({
+          message: `Aucun monument trouvé avec l'ID ${id}.`,
+          data: null
+        });
+      }
+
+      await MonumentModel.destroy({ where: { id } });
+
+      return res.json({
+        message: `Le monument avec l'ID ${id} a bien été supprimé.`,
+        data: monument
       });
+
+    } catch (error) {
+      return handleError(res, error);
+    }
   });
-}
+};
