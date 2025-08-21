@@ -1,0 +1,51 @@
+<div *ngIf="monument" class="row">
+    <div class="col s12 m8 offset-m2">
+    <h2 class="header center">{{ monument.name }}</h2>
+    <div class="card horizontal hoverable">
+      <div class="card-image">
+        <img [src]="monument.picture">
+      </div>
+      <div class="card-stacked">
+        <div class="card-content">
+          <table class="bordered striped">
+            <tbody>
+              <tr>
+                <td>Nom</td>
+                <td><strong>{{ monument.name }}</strong></td>
+              </tr>
+              <tr>
+                <td>Description </td>
+                <td><strong>{{ monument.description }}</strong></td>
+              </tr>
+              <tr>
+                <td>Pays</td>
+                <td>
+                  <span class="{{ monument.country | countryByColor }}">{{ monument.country }}</span>
+                </td>
+              </tr>
+              <tr>
+                <td>Ville</td>
+                <td><strong>{{ monument.city }}</strong></td>
+              </tr>
+              <tr>
+                <td>Date de construction</td>
+                <td><strong>{{ monument.buildYear }}</strong></td>
+              </tr>
+              <tr>
+                <td>Date de création</td>
+                <td><em>{{ monument.created | date:"dd/MM/yyyy" }}</em></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card-action">
+          <a (click)="goToMonumentList()">Retour</a>
+          <a (click)="goToMonumentEdit()">Modifier</a>
+        </div>
+      </div>
+    </div>
+    </div>
+</div>
+<div *ngIf='!monument' class="center">
+  <h2>Aucun monument !</h2>
+</div>

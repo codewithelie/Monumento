@@ -1,0 +1,100 @@
+<form *ngIf="monument" (ngSubmit)="onSubmit()" #monumentForm="ngForm">
+    <div class="row">
+      <div class="col s8 offset-s2">
+        <div class="card-panel">
+  
+          <!-- Monument name -->
+          <div class="form-group">
+            <label for="name">Nom</label>
+            <input type="text" class="form-control" id="name"
+                   required
+                   [(ngModel)]="monument.name" name="name"
+                   #name="ngModel">
+            <div [hidden]="name.valid || name.pristine"
+                 class="card-panel red accent-1">
+              Le nom du monument est requis (1-25).
+            </div>
+          </div>
+  
+          <!-- monument picture -->
+          <div *ngIf="isAddForm" class="form-group">
+            <label for="picture">Image</label>
+            <input type="url" class="form-control" id="picture"
+                   required
+                   [(ngModel)]="monument.picture" name="picture"
+                   #picture="ngModel">
+            <div [hidden]="picture.valid || picture.pristine"
+                 class="card-panel red accent-1">
+              L'image du monument est requise.
+            </div>
+          </div>
+  
+          <!-- City -->
+          <div class="form-group">
+            <label for="city">Ville</label>
+            <input type="text" class="form-control" id="city"
+                   required
+                   [(ngModel)]="monument.city" name="city"
+                   #city="ngModel">
+            <div [hidden]="city.valid || city.pristine"
+                 class="card-panel red accent-1">
+              La ville du monument est requise (1-25).
+            </div>
+          </div>
+  
+          <!-- Country as select -->
+          <div class="form-group">
+            <label for="country">Pays</label>
+            <select class="form-control" id="country"
+                    required
+                    [(ngModel)]="monument.country"
+                    name="country"
+                    #country="ngModel">
+          
+              <option *ngIf="isAddForm" value="" disabled selected>Choisir un pays</option>
+              <option *ngFor="let p of countries" [value]="p">{{ p }}</option>
+            </select>
+          
+            <div [hidden]="country.valid || country.pristine"
+                 class="card-panel red accent-1">
+              Le pays du monument est requis.
+            </div>
+          </div>
+  
+          <!-- buildYear -->
+          <div class="form-group">
+            <label for="buildYear">Année de construction</label>
+            <input type="number" class="form-control" id="buildYear"
+                   [(ngModel)]="monument.buildYear" name="buildYear"
+                   #buildYear="ngModel">
+          </div>
+  
+          <!-- description as textarea -->
+          <div class="form-group">
+            <label for="description">Description</label>
+            <textarea class="form-control" id="description"
+                      rows="7"
+                      required
+                      [(ngModel)]="monument.description" name="description"
+                      #description="ngModel"></textarea>
+            <div [hidden]="description.valid || description.pristine"
+                 class="card-panel red accent-1">
+              La description du monument est requise.
+            </div>
+          </div>
+  
+          <!-- Submit button -->
+          <div class="divider"></div>
+          <div class="section center">
+            <button type="submit"
+                    class="waves-effect waves-light btn"
+                    [disabled]="!monumentForm.form.valid">
+              Valider
+            </button>
+          </div>
+  
+        </div>
+      </div>
+    </div>
+  </form>
+  

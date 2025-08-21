@@ -1,0 +1,18 @@
+
+<div class="row">
+    <app-search-monument></app-search-monument>
+    <div *ngFor="let monument of monumentList" class="col m4 s6">
+        <div (click)="goToMonument(monument)" class="card horizontal" appBorderCard="#000">
+            <div class="card-image">
+                <img [src]="monument.picture" />
+            </div>
+            <div class="card-stacked">
+                <div class="card-content">
+                    <p>{{ monument.name }}</p>
+                    <p><small>{{ monument.created | date:"dd/MM/Y" | uppercase }}</small></p>
+                    <span class="{{ monument.country | countryByColor }}">{{ monument.country }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

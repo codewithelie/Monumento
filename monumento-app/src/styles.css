@@ -1,0 +1,62 @@
+
+  .chip{
+    font-size: 10px;
+  }
+  /* Couleurs de base */
+  .fr-blue {
+    background-color: #0055a4;
+    color: white;
+  }
+  
+  .fr-bluered {
+    background: linear-gradient(45deg, #0055a4 50%, #ef4135 50%);
+    color: white;
+  }
+  
+  .fr-green {
+    background-color: #009246;
+    color: white;
+  }
+  
+  .fr-red {
+    background-color: #ef4135;
+    color: white;
+  }
+  
+  .fr-brown {
+    background-color: #8B4513;
+    color: white;
+  }
+  
+  .fr-greenyellow {
+    background: linear-gradient(45deg, #009246 50%, #FFD700 50%);
+    color: white;
+  }
+  
+  .fr-lightbrown {
+    background-color: #D2B48C;
+    color: black;
+  }
+  
+  .fr-redbrown {
+    background: linear-gradient(45deg, #ef4135 50%, #8B4513 50%);
+    color: white;
+  }
+  
+  .fr-bluewhite {
+    background: linear-gradient(45deg, #0055a4 50%, #FFFFFF 50%);
+    color: black;
+  }
+  .fr-orange {
+    background-color: #FF9933;
+    color: white;
+  }
+  /* Style par défaut */
+  .grey {
+    background-color: #9e9e9e;
+    color: white;
+  }
+
+  select{
+    display: block;
+  }
