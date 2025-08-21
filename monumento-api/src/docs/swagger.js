@@ -11,7 +11,7 @@ const options = {
         description: 'Documentation des endpoints Monumento',
       },
       servers: [
-        { url: process.env.API_URL || 'http://localhost:3000', description: 'Local' }
+        { url: process.env.API_URL || 'http://localhost:3000/api', description: 'Local' }
       ],
       components: {
         securitySchemes: {

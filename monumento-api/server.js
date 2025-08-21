@@ -20,23 +20,26 @@ sequelize.initializeDatabase();
 // Swagger documentation
 require('./src/docs/swagger.js')(app);
 
+const api = express.Router();
+app.use('/api', api);
+
 // Routes
 app.get('/', (req, res) => {
   res.send('Bienvenue sur l\'API Monumento ! Utilisez les routes pour interagir avec les monuments.');
 });
 
 //monuments routes
-require('./src/routes/monuments/searchMonuments.js')(app);
-require('./src/routes/monuments/findAllMonuments')(app);
-require('./src/routes/monuments/findMonumentByPK')(app);
-require('./src/routes/monuments/createMonument')(app);
-require('./src/routes/monuments/updateMonument')(app);
-require('./src/routes/monuments/deleteMonument')(app);
+require('./src/routes/monuments/searchMonuments.js')(api);
+require('./src/routes/monuments/findAllMonuments')(api);
+require('./src/routes/monuments/findMonumentByPK')(api);
+require('./src/routes/monuments/createMonument')(api);
+require('./src/routes/monuments/updateMonument')(api);
+require('./src/routes/monuments/deleteMonument')(api);
 
 //auth routes
-require('./src/routes/auth/login')(app);
-require('./src/routes/auth/register')(app);
-require('./src/routes/auth/refreshToken')(app);
+require('./src/routes/auth/login')(api);
+require('./src/routes/auth/register')(api);
+require('./src/routes/auth/refreshToken')(api);
 
 app.use((req, res) => {
   const url = req.originalUrl;
