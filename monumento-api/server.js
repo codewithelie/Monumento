@@ -4,10 +4,35 @@ const morgan = require('morgan');
 const favicon = require('serve-favicon');
 const sequelize = require('./src/db/sequelize.js');
 const cors = require('cors');
+const { Server } = require('socket.io');
+const http = require('http');
+
 
 // Création de l'application Express
 const app = express(); 
 const port = 3000;
+
+const server = http.createServer(app);
+const io = new Server(server, {
+  cors: {
+    origin: 'http://localhost:4200', 
+    methods: ['GET', 'POST'],
+  },
+});
+
+app.use((req, res, next) => {
+  req.io = io;
+  next();
+});
+
+io.on('connection', (socket) => {
+  console.log('Un utilisateur est connecté', socket.id);
+  
+  socket.on('disconnect', () => {
+    console.log('Un utilisateur est déconnecté', socket.id);
+  });
+}); 
+
 
 // Middlewares
 app

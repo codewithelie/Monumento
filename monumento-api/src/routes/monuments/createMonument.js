@@ -52,6 +52,9 @@ module.exports = (app) => {
     const monument = req.body;
     try {
       const createdMonument = await MonumentModel.create(monument);
+
+      req.io.emit('monument_created', createdMonument);
+
       const message = 'Le monument a bien été créé.';
       return res.status(201).json({ message, data: createdMonument });
     } catch (error) {
