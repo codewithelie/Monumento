@@ -11,6 +11,13 @@ interface LoginResponse {
   }
 }
 
+interface RefreshTokenResponse {
+  message: string;
+  data: {
+    accessToken: string;  
+  }
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -34,6 +41,19 @@ export class AuthService {
         this.isLoggedIn = true; 
       },(err) => of(false))
     );
+  }
+
+  refreshToken(): Observable<RefreshTokenResponse> {
+    return this.http.post<RefreshTokenResponse>('http://localhost:3000/api/refresh-token', { token: this.token }).pipe(
+      tap(response => {
+        this.setToken(response.data.accessToken);
+      })
+    );
+  }
+
+  setToken(token: string): void {
+    this.token = token;
+    localStorage.setItem('access_token', token);
   }
 
   logout() {
