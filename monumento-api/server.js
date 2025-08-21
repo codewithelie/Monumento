@@ -17,6 +17,9 @@ app
 // Initialisation de la base de données
 sequelize.initializeDatabase();
 
+// Swagger documentation
+require('./src/docs/swagger.js')(app);
+
 // Routes
 app.get('/', (req, res) => {
   res.send('Bienvenue sur l\'API Monumento ! Utilisez les routes pour interagir avec les monuments.');
