@@ -30,7 +30,7 @@ module.exports = (app) => {
 
                             res.json({
                                 message: 'L\'utilisateur a été connecté avec succès.',
-                                data: { userId: user.id, token },
+                                data: { userName: user.name, token },
                             });
                         }
                     })

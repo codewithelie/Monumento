@@ -30,6 +30,7 @@ require('./src/routes/createMonument')(app);
 require('./src/routes/updateMonument')(app);
 require('./src/routes/deleteMonument')(app);
 require('./src/routes/login')(app);
+require('./src/routes/register')(app);
 
 app.use((req, res) => {
   const url = req.originalUrl;
