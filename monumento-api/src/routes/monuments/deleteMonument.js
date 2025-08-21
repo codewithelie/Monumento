@@ -1,6 +1,6 @@
-const { MonumentModel } = require('../db/sequelize.js');
-const auth = require('../auth/auth.js');
-const { handleError } = require('../../helper.js');
+const { MonumentModel } = require('../../db/sequelize.js');
+const auth = require('../../auth/auth.js');
+const { handleError } = require('../../../helper.js');
 
 module.exports = (app) => {
   app.delete('/monuments/:id', auth, async (req, res) => {

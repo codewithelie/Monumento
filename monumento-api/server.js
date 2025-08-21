@@ -23,14 +23,17 @@ app.get('/', (req, res) => {
   res.send('Bienvenue sur l\'API Monumento ! Utilisez les routes pour interagir avec les monuments.');
 });
 
-require('./src/routes/searchMonuments')(app);
-require('./src/routes/findAllMonuments')(app);
-require('./src/routes/findMonumentByPK')(app);
-require('./src/routes/createMonument')(app);
-require('./src/routes/updateMonument')(app);
-require('./src/routes/deleteMonument')(app);
-require('./src/routes/login')(app);
-require('./src/routes/register')(app);
+//monuments routes
+require('./src/routes/monuments/searchMonuments.js')(app);
+require('./src/routes/monuments/findAllMonuments')(app);
+require('./src/routes/monuments/findMonumentByPK')(app);
+require('./src/routes/monuments/createMonument')(app);
+require('./src/routes/monuments/updateMonument')(app);
+require('./src/routes/monuments/deleteMonument')(app);
+
+//auth routes
+require('./src/routes/auth/login')(app);
+require('./src/routes/auth/register')(app);
 
 app.use((req, res) => {
   const url = req.originalUrl;

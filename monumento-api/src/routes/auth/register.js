@@ -1,9 +1,9 @@
-const { UserModel } = require('../db/sequelize.js');
+const { UserModel } = require('../../db/sequelize.js');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const fs = require('fs');
 const privateKey =  fs.readFileSync('./src/auth/jwtRS256.key');
-const { handleError } = require('../../helper.js');
+const { handleError } = require('../../../helper.js');
 
 module.exports = (app) => {
   app.post('/register', async (req, res) => {

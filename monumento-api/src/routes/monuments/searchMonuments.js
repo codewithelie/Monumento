@@ -1,7 +1,7 @@
-const { MonumentModel } = require('../db/sequelize.js');
+const { MonumentModel } = require('../../db/sequelize.js');
 const { Op, json } = require('sequelize');
-const auth = require('../auth/auth.js');
-const { handleError } = require('../../helper.js');
+const auth = require('../../auth/auth.js');
+const { handleError } = require('../../../helper.js');
 
 module.exports = (app) => {
   app.get('/monuments/search', auth, async (req, res) => {
